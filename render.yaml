@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ml-docker-orchestrator-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: ENV
+        value: production
+      - key: API_PORT
+        value: 8000
