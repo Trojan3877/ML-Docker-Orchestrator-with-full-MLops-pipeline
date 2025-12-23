@@ -36,7 +36,23 @@ This Quickstart will help you:
 - Run basic tests
 
 ---
+## 🌐 Live Demo (Deployed on Render)
 
+The ML API is deployed live using **Render** and can be accessed publicly for demo and testing.
+
+🔗 **Base URL:**  
+https://<your-app-name>.onrender.com
+
+[![Deploy](https://img.shields.io/badge/Deployed%20On-Render-blueviolet.svg)](https://render.com)
+
+---
+
+### ❤️ Health Check
+
+Verify the service is running:
+
+```bash
+curl https://ML-DOCKER-ORCHESTRATOR.onrender.com/health
 ### 📌 Prerequisites
 
 Make sure you have the following installed:
