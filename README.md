@@ -24,7 +24,88 @@ https://codecov.io/gh/Trojan3877/ML-Docker-Orchestrator/branch/main/graph/badge.
 
 
 ---
+## 🚀 Quickstart — Run the Full MLOps Pipeline Locally
 
+Get the complete ML Docker orchestration and MLOps pipeline running on your machine in just a few minutes.
+
+This Quickstart will help you:
+- Clone the repo
+- Configure environment variables
+- Build and run all services with Docker
+- Verify the ML API is live
+- Run basic tests
+
+---
+
+### 📌 Prerequisites
+
+Make sure you have the following installed:
+
+- **Git**
+- **Docker** (v20+)
+- **Docker Compose** (v2+)
+- **Python 3.8+** (for local scripts/tests)
+- **pip**
+
+Optional (for Kubernetes mode):
+- **kubectl**
+- **minikube** or **kind**
+
+Check versions:
+
+```bash
+docker --version
+docker compose version
+python --version
+Clone the Repository
+
+Bash
+git clone https://github.com/Trojan3877/ML-Docker-Orchestrator-with-full-MLops-pipeline.git
+cd ML-Docker-Orchestrator-with-full-MLops-pipeline
+⚙️ 2️⃣ Configure Environment
+Create your environment file:
+Bash
+cp .env.example .env
+Edit .env and adjust as needed:
+Env
+API_PORT=8000
+MODEL_NAME=baseline_model
+ENV=dev
+Build & Launch with Docker Compose
+Spin up the full local stack:
+Bash
+docker compose up --build
+Verify the ML API
+Once running, open another terminal and check:
+Bash
+curl http://localhost:8000/health
+Expected output:
+Json
+{"status": "ok"}
+You can also open in browser:
+
+http://localhost:8000/docs
+to see the FastAPI Swagger UI.
+Run Tests
+Run unit/integration tests locally:
+Bash
+pytest
+Or inside the API container:
+Bash
+docker compose exec api pytest
+ Check Running Services
+
+Bash
+docker compose ps
+View logs:
+Bash
+docker compose logs -f
+Stop the Stack
+Bash
+docker compose down
+To remove volumes too:
+Bash
+docker compose down -v
 ## 📂 Project Structure
 
 ```plaintext
