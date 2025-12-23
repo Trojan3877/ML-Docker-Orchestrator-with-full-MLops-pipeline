@@ -15,6 +15,11 @@ https://codecov.io/gh/Trojan3877/ML-Docker-Orchestrator/branch/main/graph/badge.
 ![DataWarehouse](https://img.shields.io/badge/Data-Snowflake-lightblue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 [![Deploy to Render](https://img.shields.io/badge/Deploy-Render-blueviolet.svg)](https://render.com)
+
+[![Build](https://github.com/Trojan3877/ML-Docker-Orchestrator-with-full-MLops-pipeline/actions/workflows/ci.yml/badge.svg)](...)
+[![Deploy](https://img.shields.io/badge/Deployed%20On-Render-blueviolet.svg)](https://render.com)
+[![Uptime Status](https://img.shields.io/uptimerobot/status/m796123456-abcdef1234567890.svg)](https://uptimerobot.com)
+[![Uptime](https://img.shields.io/uptimerobot/ratio/m796123456-abcdef1234567890.svg)](https://uptimerobot.com)
 ---
 🌐 Live API: https://<ML-DOCKER-ORCHESTRATOR.onrender.com
 ## 🧠 Architecture Flowchart
