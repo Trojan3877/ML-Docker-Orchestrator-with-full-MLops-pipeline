@@ -1,39 +1,29 @@
+.PHONY: setup lint format test run docker-build docker-run smoke
 
-# Makefile for ML-Docker-Orchestrator
+setup:
+	python -m pip install -U pip
+	pip install -r requirements.txt
+	pip install -r requirements-dev.txt
 
-# Build Docker image
-build:
-	docker build -t ml-docker-api -f docker/Dockerfile .
-
-# Run Docker container
-run:
-	docker run -d -p 8000:8000 --name ml_docker_app ml-docker-api
-
-# Stop and remove container
-stop:
-	docker stop ml_docker_app || true
-	docker rm ml_docker_app || true
-
-# Clean up image
-clean:
-	docker rmi ml-docker-api || true
-
-# Run all tests
-test:
-	pytest tests/
-
-# Lint code with flake8
 lint:
-	flake8 app/ model/
+	ruff check .
+	mypy src || true
 
-# Run API locally
-serve:
-	uvicorn app.main:app --reload
+format:
+	black .
+	ruff check . --fix
 
-# Build and start with Docker Compose
-compose-up:
-	docker-compose -f docker/docker-compose.yml up --build
+test:
+	pytest -q --disable-warnings --maxfail=1 --cov=src --cov-report=term-missing
 
-# Tear down Docker Compose
-compose-down:
-	docker-compose -f docker/docker-compose.yml down
+run:
+	uvicorn orchestrator.api:app --host 0.0.0.0 --port 8080
+
+docker-build:
+	docker build -t ml-docker-orchestrator:local .
+
+docker-run:
+	docker run --rm -p 8080:8080 --env-file .env.example ml-docker-orchestrator:local
+
+smoke:
+	bash scripts/smoke_test.sh
