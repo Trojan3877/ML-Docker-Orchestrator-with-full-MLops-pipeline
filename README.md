@@ -1,153 +1,91 @@
-# 🚀 ML-Docker-Orchestrator with Full MLops Pipeline
+ML-Docker-Orchestrator with Full MLops Pipeline
 
 A containerized machine learning deployment pipeline using **PyTorch**, **Docker Compose**, **Kubernetes**, **Terraform**, **Ansible**, **Apache Kafka**, and **Snowflake**.
 https://codecov.io/gh/Trojan3877/ML-Docker-Orchestrator/branch/main/graph/badge.svg
 ![Coverage](https://codecov.io/gh/Trojan3877/<REPO>/branch/main/graph/badge.svg)
+# ML Docker Orchestrator (Full MLOps Pipeline)
 
+![CI](https://github.com/Trojan3877/ML-Docker-Orchestrator-with-full-MLops-pipeline/actions/workflows/ci.yml/badge.svg)
+![Security](https://github.com/Trojan3877/ML-Docker-Orchestrator-with-full-MLops-pipeline/actions/workflows/security.yml/badge.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-API-brightgreen.svg)
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue.svg)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Deployment-blue.svg)
+![MLflow](https://img.shields.io/badge/MLflow-Tracking%2FRegistry-orange.svg)
+![Prometheus](https://img.shields.io/badge/Prometheus-Metrics-red.svg)
 
-![Docker](https://img.shields.io/badge/Containerized-Docker-informational)
-![Kubernetes](https://img.shields.io/badge/Orchestrator-Kubernetes-blue)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-success)
-![ML-Framework](https://img.shields.io/badge/Framework-PyTorch-red)
-![IaC](https://img.shields.io/badge/Infrastructure-Terraform-purple)
-![Provisioning](https://img.shields.io/badge/Provisioning-Ansible-yellow)
-![Streaming](https://img.shields.io/badge/Streaming-Apache_Kafka-orange)
-![DataWarehouse](https://img.shields.io/badge/Data-Snowflake-lightblue)
-![License](https://img.shields.io/badge/License-MIT-green)
-[![Deploy to Render](https://img.shields.io/badge/Deploy-Render-blueviolet.svg)](https://render.com)
+A production-style ML inference orchestrator that demonstrates **end-to-end MLOps**:
+- Training with **MLflow** metrics logging + model registry
+- Serving with **FastAPI** and **structured JSON logs**
+- **Docker** container build + **Kubernetes** deployment manifests (HPA included)
+- **Prometheus** metrics endpoint (`/metrics`)
+- CI/CD + security automation (lint/test, dependency checks)
 
-[![Build](https://github.com/Trojan3877/ML-Docker-Orchestrator-with-full-MLops-pipeline/actions/workflows/ci.yml/badge.svg)](...)
-[![Deploy](https://img.shields.io/badge/Deployed%20On-Render-blueviolet.svg)](https://render.com)
-[![Uptime Status](https://img.shields.io/uptimerobot/status/m796123456-abcdef1234567890.svg)](https://uptimerobot.com)
-[![Uptime](https://img.shields.io/uptimerobot/ratio/m796123456-abcdef1234567890.svg)](https://uptimerobot.com)
 ---
-🌐 Live API: https://<ML-DOCKER-ORCHESTRATOR.onrender.com
-## 🧠 Architecture Flowchart
+
+## Architecture Flow
+
+```mermaid
+flowchart LR
+  A[Data / Features] --> B[Train Pipeline]
+  B --> C[MLflow Tracking]
+  C --> D[Model Registry\nStage=Production]
+  D --> E[FastAPI Inference Service]
+  E --> F[Docker Image]
+  F --> G[Kubernetes Deployment + HPA]
+  E --> H[Prometheus Metrics\n/metrics]
+  E --> I[Structured Logs]
+
 
 ![image](https://github.com/user-attachments/assets/d9044d80-a9d7-42f7-8957-19bd2e9e9e77)
 
 
 
----
-## 🚀 Quickstart — Run the Full MLOps Pipeline Locally
-
-Get the complete ML Docker orchestration and MLOps pipeline running on your machine in just a few minutes.
-
-This Quickstart will help you:
-- Clone the repo
-- Configure environment variables
-- Build and run all services with Docker
-- Verify the ML API is live
-- Run basic tests
-
----
-## 🌐 Live Demo (Deployed on Render)
-
-The ML API is deployed live using **Render** and can be accessed publicly for demo and testing.
-
-🔗 **Base URL:**  
-https://<your-app-name>.onrender.com
-
-[![Deploy](https://img.shields.io/badge/Deployed%20On-Render-blueviolet.svg)](https://render.com)
-
----
-
-### ❤️ Health Check
-
-Verify the service is running:
-
-```bash
-curl https://ML-DOCKER-ORCHESTRATOR.onrender.com/health
-### 📌 Prerequisites
-
-Make sure you have the following installed:
-
-- **Git**
-- **Docker** (v20+)
-- **Docker Compose** (v2+)
-- **Python 3.8+** (for local scripts/tests)
-- **pip**
-
-Optional (for Kubernetes mode):
-- **kubectl**
-- **minikube** or **kind**
-
-Check versions:
-
-```bash
-docker --version
-docker compose version
-python --version
-Clone the Repository
-
-Bash
-git clone https://github.com/Trojan3877/ML-Docker-Orchestrator-with-full-MLops-pipeline.git
-cd ML-Docker-Orchestrator-with-full-MLops-pipeline
-⚙️ 2️⃣ Configure Environment
-Create your environment file:
-Bash
+Quick Start (Local)
+Option A: Docker Compose (recommended)
 cp .env.example .env
-Edit .env and adjust as needed:
-Env
-API_PORT=8000
-MODEL_NAME=baseline_model
-ENV=dev
-Build & Launch with Docker Compose
-Spin up the full local stack:
-Bash
-docker compose up --build
-Verify the ML API
-Once running, open another terminal and check:
-Bash
-curl http://localhost:8000/health
-Expected output:
-Json
-{"status": "ok"}
-You can also open in browser:
+docker compose -f infra/docker-compose.yml up --build
 
-http://localhost:8000/docs
-to see the FastAPI Swagger UI.
-Run Tests
-Run unit/integration tests locally:
-Bash
-pytest
-Or inside the API container:
-Bash
-docker compose exec api pytest
- Check Running Services
+Test:
 
-Bash
-docker compose ps
-View logs:
-Bash
-docker compose logs -f
-Stop the Stack
-Bash
-docker compose down
-To remove volumes too:
-Bash
-docker compose down -v
-## 📂 Project Structure
+curl http://localhost:8080/health
+bash scripts/smoke_test.sh
+Option B: Python (no containers)
+make setup
+make run
+Endpoints
 
-```plaintext
-ML-Docker-Orchestrator/
-├── model/train.py
-├── app/main.py
-├── docker/
-│   ├── Dockerfile
-│   └── docker-compose.yml
-├── k8s/deployment.yaml
-├── terraform/main.tf
-├── ansible/provision.yml
-├── snowflake/connect_snowflake.py
-├── apache/stream_data.py
-├── tests/test_api.py
-├── notebooks/eda_snowflake_data.ipynb
-├── .github/workflows/ci.yml
-├── Makefile
-├── requirements.txt
-├── .env.example
-├── CONTRIBUTING.md
-├── CHANGELOG.md
-├── README.md
-└── visual_flowchart.png
+GET /health → health check
+
+POST /predict → predictions
+
+GET /metrics → Prometheus metrics
+
+Q1: What makes this “industry-grade”?
+
+This repo includes the same pillars used in production ML systems: containerization, CI/CD automation, observability, security scanning, and deployable Kubernetes manifests. It demonstrates not just model training, but the operational lifecycle around ML.
+
+Q2: How is the model versioned and promoted?
+
+Training logs metrics and artifacts to MLflow. The serving service loads from the MLflow Registry using models:/<name>/<stage> which mirrors real promotion workflows (Staging → Production).
+
+Q3: How does the API stay observable in production?
+
+The service exposes Prometheus metrics at /metrics and uses structured JSON logs for easier parsing in centralized logging platforms. This enables SLO tracking and faster incident triage.
+
+Q4: What would you add for “real production hardening”?
+
+Authentication, rate limiting, request validation, offline batch scoring, drift monitoring, and automated rollback. A Helm chart plus environment-specific overlays would standardize deployment across clusters.
+
+Q5: What’s the biggest scaling lever here?
+
+Horizontal autoscaling with HPA handles traffic spikes, while model caching and efficient model loading reduce inference latency. In a real setting, you’d also add queue-based async inference for heavy workloads.
+
+Q6: How would you evaluate this system end-to-end?
+
+Unit tests validate API and config behavior, CI ensures consistent quality, smoke tests validate runtime behavior, and MLflow metrics quantify model performance. In production, you would add load tests and canary deploys.
+
+Q7: Why FastAPI + MLflow?
+
+FastAPI is lightweight and widely used for inference services. MLflow provides a standard approach to experiment tracking and model registry workflows that hiring teams recognize immediately.
