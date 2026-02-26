@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-orchestrator
+  namespace: ml-orchestrator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-orchestrator
+  template:
+    metadata:
+      labels:
+        app: ml-orchestrator
+    spec:
+      containers:
+        - name: api
+          image: YOUR_DOCKERHUB_OR_GHCR/ml-docker-orchestrator:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: orchestrator-config
+            - secretRef:
+                name: orchestrator-secrets
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
