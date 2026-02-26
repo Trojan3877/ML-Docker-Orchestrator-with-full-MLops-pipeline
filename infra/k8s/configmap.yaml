@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orchestrator-config
+  namespace: ml-orchestrator
+data:
+  APP_ENV: "prod"
+  LOG_LEVEL: "INFO"
+  MODEL_NAME: "orchestrator-model"
+  MODEL_STAGE: "Production"
+  METRICS_ENABLED: "true"
