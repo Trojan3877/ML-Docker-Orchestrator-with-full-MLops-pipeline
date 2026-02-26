@@ -1,0 +1,30 @@
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.10.0
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri sqlite:///mlflow.db
+      --default-artifact-root /mlruns
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlruns:/mlruns
+
+  api:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MODEL_NAME=orchestrator-model
+      - MODEL_STAGE=Production
+      - METRICS_ENABLED=true
+    depends_on:
+      - mlflow
+
+volumes:
+  mlruns:
