@@ -26,18 +26,6 @@ A production-style ML inference orchestrator that demonstrates **end-to-end MLOp
 
 ## Architecture Flow
 
-```mermaid
-flowchart LR
-  A[Data / Features] --> B[Train Pipeline]
-  B --> C[MLflow Tracking]
-  C --> D[Model Registry\nStage=Production]
-  D --> E[FastAPI Inference Service]
-  E --> F[Docker Image]
-  F --> G[Kubernetes Deployment + HPA]
-  E --> H[Prometheus Metrics\n/metrics]
-  E --> I[Structured Logs]
-
-
 ![image](https://github.com/user-attachments/assets/d9044d80-a9d7-42f7-8957-19bd2e9e9e77)
 
 
