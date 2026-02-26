@@ -1,0 +1,64 @@
+ML-Docker-Orchestrator-with-full-MLops-pipeline/
+├─ .github/
+│  ├─ workflows/
+│  │  ├─ ci.yml
+│  │  ├─ cd.yml
+│  │  ├─ security.yml
+│  │  └─ release.yml
+│  └─ dependabot.yml
+├─ .vscode/
+│  └─ settings.json
+├─ docs/
+│  ├─ ARCHITECTURE.md
+│  ├─ QUICKSTART.md
+│  ├─ RUNBOOK.md
+│  └─ THREAT_MODEL.md
+├─ infra/
+│  ├─ docker-compose.yml
+│  ├─ k8s/
+│  │  ├─ namespace.yaml
+│  │  ├─ configmap.yaml
+│  │  ├─ secret.example.yaml
+│  │  ├─ deployment.yaml
+│  │  ├─ service.yaml
+│  │  ├─ hpa.yaml
+│  │  ├─ servicemonitor.yaml
+│  │  └─ networkpolicy.yaml
+│  └─ observability/
+│     ├─ prometheus.yml
+│     └─ grafana-dashboard.json
+├─ scripts/
+│  ├─ bootstrap.sh
+│  ├─ train_local.sh
+│  ├─ build_image.sh
+│  ├─ run_local.sh
+│  ├─ deploy_k8s.sh
+│  └─ smoke_test.sh
+├─ src/
+│  └─ orchestrator/
+│     ├─ __init__.py
+│     ├─ api.py
+│     ├─ config.py
+│     ├─ logging_config.py
+│     ├─ metrics.py
+│     ├─ model.py
+│     └─ pipeline/
+│        ├─ __init__.py
+│        ├─ train.py
+│        └─ evaluate.py
+├─ tests/
+│  ├─ test_health.py
+│  ├─ test_predict.py
+│  └─ test_config.py
+├─ .dockerignore
+├─ .env.example
+├─ .gitignore
+├─ .pre-commit-config.yaml
+├─ Dockerfile
+├─ LICENSE
+├─ Makefile
+├─ metrics.md
+├─ pyproject.toml
+├─ requirements.txt
+├─ requirements-dev.txt
+└─ README.md   ← LAST
