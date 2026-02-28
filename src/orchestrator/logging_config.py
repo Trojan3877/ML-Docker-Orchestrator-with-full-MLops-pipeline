@@ -1,17 +1,12 @@
+# monitoring/logging_config.py
+
 import logging
-from pythonjsonlogger import jsonlogger
-
-from .config import settings
+import sys
 
 
-def configure_logging() -> None:
-    logger = logging.getLogger()
-    logger.setLevel(settings.log_level)
-
-    handler = logging.StreamHandler()
-    formatter = jsonlogger.JsonFormatter(
-        "%(asctime)s %(levelname)s %(name)s %(message)s %(pathname)s %(lineno)d"
+def configure_logging(level: str = "INFO"):
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+        handlers=[logging.StreamHandler(sys.stdout)],
     )
-    handler.setFormatter(formatter)
-
-    logger.handlers = [handler]
