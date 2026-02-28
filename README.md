@@ -12,7 +12,7 @@ ML-Docker-Orchestrator with Full MLops Pipeline
 
 
 
-## Architecture Flow
+Architecture Flow
 
 ![image](https://github.com/user-attachments/assets/d9044d80-a9d7-42f7-8957-19bd2e9e9e77)
 
@@ -39,7 +39,7 @@ Scalable API serving
 
 This project demonstrates how ML systems operate in real enterprise environments.
 
-🏗 System Architecture
+ System Architecture
 User Request
      ↓
 FastAPI Inference Layer
@@ -122,6 +122,20 @@ GitHub Actions pipeline
 Automated testing
 
 Build validation
+
+
+
+Metrics Table
+Metric	Description	Purpose
+ml_api_requests_total	Total API requests	Traffic monitoring
+ml_prediction_latency_seconds	Inference latency	Performance tracking
+model_version	Active model version	Traceability
+experiment_id	MLflow run ID	Reproducibility
+deployment_replicas	Active pods	Scaling insight
+
+
+
+
 
 Quick Start
 Clone Repository
