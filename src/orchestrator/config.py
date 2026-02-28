@@ -1,19 +1,21 @@
-from pydantic_settings import BaseSettings
+# src/config.py
+
+from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    app_env: str = "dev"
-    log_level: str = "INFO"
+    APP_NAME: str = "ML Docker Orchestrator"
+    ENVIRONMENT: str = "development"
 
-    mlflow_tracking_uri: str = "http://localhost:5000"
-    model_name: str = "orchestrator-model"
-    model_stage: str = "Production"
+    MODEL_PATH: str = "models/model.pkl"
+    DATA_PATH: str = "data/"
+    MLFLOW_TRACKING_URI: str = "http://localhost:5000"
 
-    metrics_enabled: bool = True
+    LOG_LEVEL: str = "INFO"
+    ENABLE_PROMETHEUS: bool = True
 
     class Config:
-        env_prefix = ""
-        case_sensitive = False
+        env_file = ".env"
 
 
 settings = Settings()
