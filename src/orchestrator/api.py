@@ -1,8 +1,9 @@
 import logging
 import time
+from typing import Any
+
 from fastapi import FastAPI, Response
 from pydantic import BaseModel, Field
-from typing import Any, Dict, List
 
 from .config import settings
 from .logging_config import configure_logging
@@ -16,7 +17,7 @@ app = FastAPI(title="ML Docker Orchestrator", version="0.1.0")
 
 
 class PredictRequest(BaseModel):
-    records: List[Dict[str, Any]] = Field(..., description="List of feature dicts")
+    records: list[dict[str, Any]] = Field(..., description="List of feature dicts")
 
 
 @app.get("/health")

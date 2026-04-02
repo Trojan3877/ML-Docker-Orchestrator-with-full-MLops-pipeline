@@ -1,6 +1,6 @@
 import logging
 from functools import lru_cache
-from typing import Any, Dict, List
+from typing import Any
 
 import mlflow
 
@@ -19,7 +19,7 @@ def load_model():
     return mlflow.pyfunc.load_model(model_uri)
 
 
-def predict(features: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def predict(features: list[dict[str, Any]]) -> list[dict[str, Any]]:
     model = load_model()
     import pandas as pd
 
