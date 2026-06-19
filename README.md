@@ -6,7 +6,7 @@ ML-Docker-Orchestrator with Full MLops Pipeline
 [![Security Scan: Trivy](https://img.shields.io/badge/Security_Scan-Trivy-brightgreen.svg)](https://github.com/Trojan3877/ML-Docker-Orchestrator-with-full-MLops-pipeline/actions)
 [![Infrastructure: Docker Compose](https://img.shields.io/badge/Infrastructure-Docker_Compose-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Control Plane: Streamlit](https://img.shields.io/badge/Control_Plane-Streamlit-FF4B4B.svg?logo=streamlit&logoColor=white)](https://share.streamlit.io/)
-[![Platform Architecture: L6 Staff Tier](https://img.shields.io/badge/Architecture-L6_Staff_Engine-blueviolet.svg)](#-platform-architecture--distributed-topology)
+
 
 An enterprise-grade, highly available, and idempotent distributed MLOps orchestration platform. This platform programmatically schedules execution graphs (DAGs), tracks multi-container container life cycles, enforces strict image-layer vulnerability validation boundaries, and exposes an integrated AIOps Control Plane telemetry monitor.
 
